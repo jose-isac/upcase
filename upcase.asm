@@ -45,6 +45,17 @@ ScanChar:
 	dec r10				; Decrements the counter by one to read the next character.
 	jmp ScanChar			; Go back to scan it.
 
+
+; Write the current buffer to standard out.
+WriteStdOut:
+	mov rax, 1 		; 1 = sys_write syscall.
+	mov rdi, 1		; 1 = stdout file descriptor.
+	mov rsi, Buffer		; Move the Buffer address to rsi.
+	mov rdx, r9		; Move the number of bytes in the buffer to rdx.
+	syscall
+	jmp ReadStdin		; Go back to read another buffer with characters.
+
+
 section .bss
 	BufferSize: equ 128
 	Buffer: resb BufferSize		; 128 bytes, then 128 characters
