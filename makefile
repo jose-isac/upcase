@@ -1,3 +1,18 @@
+# upcase
+# See LICENSE for copyright and license details.
+
+PREFIX := /usr/local
+
+install: build
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	cp -f build/upcase $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/upcase
+
+uninstall:
+	if [ -f $(DESTDIR)$(PREFIX)/bin/upcase ]; then \
+		rm $(DESTDIR)$(PREFIX)/bin/upcase; \
+	fi; \
+
 build: object
 	if [ ! -d build ]; then \
 		mkdir build; \
