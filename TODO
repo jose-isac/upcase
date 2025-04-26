@@ -3,3 +3,10 @@ Documentation
 
 * Help option
 * Man page
+
+
+Error handling
+--------------
+
+* I should look at sys_read and sys_write return codes in some
+  system calls reference paper.
