@@ -1,0 +1,39 @@
+upcase
+------
+upcase is a program that gets characters from standard input
+and send their upper case counterpart to standard output.
+
+
+Requirements
+------------
+NASM >= v2.15 and a Linux x64 distribution.
+
+
+Installation
+------------
+Edit the makefile to match your local setup(upcase is installed
+by default into /usr/local).
+
+Afterwards enter the following command to build and install upcase
+(if necessary as root).
+
+	make clean install
+
+
+Running upcase
+--------------
+Change output_file and input_file for the actual names of your files.
+
+	$ upcase > (output_file) < (input_file)
+
+
+Configuring and hacking
+-----------------------
+Configuration of upcase is done by editing the source file and
+(re)assembling the code. Take a look at the code; There's comments
+all over the place, and change it as you wish.
+
+
+License
+-------
+See LICENSE file.
