@@ -38,7 +38,7 @@ ScanChar:
 
 
 ; Goes to the next character of the buffer.
-.NextChar
+.NextChar:
 	cmp r10, 0			; If the counter's value is 0, then it's the last character.
 	je WriteStdOut			; So, go to write it to stdout.
 
