@@ -36,6 +36,14 @@ ScanChar:
 					; difference between an ASCII lowercase character and its
 					; uppercase counterpart.
 
+; Goes to the next character of the buffer.
+.NextChar
+	cmp r10, 0			; If the counter's value is 0, then it's the last character.
+	je WriteStdout			; So, go to write it to stdout.
+
+	dec r10				; Decrements the counter by one to read the next character.
+	jmp ScanChar			; Go back to scan it.
+
 section .bss
 	BufferSize: equ 128
 	Buffer: resb BufferSize		; 128 bytes, then 128 characters
