@@ -23,6 +23,19 @@ ReadStdin:
 	dec r10			; It'll start from the end of the buffer, so decrement by one
 				; to prevent stepping in forbidden memory address.
 
+
+; Scans the current char and if it's a lowercase character, convert it to uppercase.
+ScanChar:
+	cmp byte [r8 + r10], 'a'	; Compares the current character with 'a'.
+	jb .NextChar			; If it's below, this means it's not a lowercase letter.
+	cmp byte [r8 + r10], 'z'	; Compares the current character with 'z'.
+	ja .NextChar			; If it's above, this means it's not a lowercase letter.
+	
+	sub byte [r8 + r10], 020h	; At this point it should have a lowercase letter, so convert
+					; it to uppercase by subtracting its value for 020h. It's the
+					; difference between an ASCII lowercase character and its
+					; uppercase counterpart.
+
 section .bss
 	BufferSize: equ 128
 	Buffer: resb BufferSize		; 128 bytes, then 128 characters
