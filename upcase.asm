@@ -1,11 +1,35 @@
-section .data
-section .text
-global _start
+;--------------------------------------------------------------------------------------------------
+; Source code name		: upcase.asm
+; Executable name		: upcase
+; Version			: 1.0
+; Created data 			: 04/25/2025
+; Last update			: 04/26/2025
+; Author			: José Isac "Rasq" Araújo Monção
+; Architecture			: Linux x64
+; Assembler 			: NASM v2.16.01
+; Description			: A program that changes the case of characters from standard
+;				  input and return them to standard output.  
+; Input				: Characters from standard in.
+; Output			: The same characters but with upper case.
+; Variables			: Buffer     -> Used to hold the characters.
+;				  BufferSize -> Size of the buffer(128 bytes).
+;				  r9	     -> Copy of the number of bytes read from stdin
+;				  r8	     -> Copy of Buffer address
+;				  r10 	     -> Copy of the number of bytes read from stdin used
+;						as character index of Buffer.
+;				  rax, rbx,
+;				  rsi, rdx   -> For sys_write and sys_read system calls.
+;				  
+;---------------------------------------------------------------------------------------------------
+section .data			; Section containing initialized data
+section .text			; Section containing instructions
+global _start			; Necessary for the linker
 _start:
-	mov rbp, rsp	; For correct debugging
-	
+	mov rbp, rsp		; For correct debugging
+
+
+; Read from standard input
 ReadStdin:
-	; Prepare to read from standard input
 	mov rax, 0		; 0 = sys_read syscall 
 	mov rdi, 0		; 0 = stdin file descriptor
 	mov rsi, Buffer 	; Move buffer address to rsi
@@ -40,7 +64,7 @@ ScanChar:
 ; Goes to the next character of the buffer.
 .NextChar:
 	cmp r10, 0			; If the counter's value is 0, then it's the last character.
-	je WriteStdOut			; So, go to write it to stdout.
+	je WriteStdOut			; So, go to write it to stdout. Else:
 
 	dec r10				; Decrements the counter by one to read the next character.
 	jmp ScanChar			; Go back to scan it.
@@ -63,6 +87,6 @@ Exit:
 	syscall
 
 
-section .bss
+section .bss			; Section containing unitialized data
 	BufferSize: equ 128
 	Buffer: resb BufferSize		; 128 bytes, then 128 characters
