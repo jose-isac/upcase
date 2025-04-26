@@ -56,6 +56,13 @@ WriteStdOut:
 	jmp ReadStdin		; Go back to read another buffer with characters.
 
 
+; Exits the program
+Exit:
+	mov rax, 60		; 60 = sys_exit syscall
+	mov rdi, 0		; 0 = exit success return code
+	syscall
+
+
 section .bss
 	BufferSize: equ 128
 	Buffer: resb BufferSize		; 128 bytes, then 128 characters
