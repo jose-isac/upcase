@@ -24,13 +24,13 @@ Running upcase
 --------------
 Change output_file and input_file for the actual names of your files.
 
-	$ upcase > (output_file) < (input_file)
+	upcase > (output_file) < (input_file)
 
 
 Configuring and hacking
 -----------------------
 Configuration of upcase is done by editing the source file and
-(re)assembling the code. Take a look at the code; There's comments
+(re)assembling the code. Take a look at the code. There are comments
 all over the place, and change it as you wish.
 
 
